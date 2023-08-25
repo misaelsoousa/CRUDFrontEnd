@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Contêiner</h1>
+    <button type="button" (click)="modalRef.close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form (submit)="cadastrarMovimento()" id="teste">
+      <div class="mb-3">
+        <label class="form-label">Conteiner</label>
+        <select [(ngModel)]="conteiner" name="conteiner" class="form-select" aria-label="Default select example">
+          <option value="">Selecione</option>
+          <option *ngFor="let conteiner of listaConteineres"[value]="conteiner.id">{{ conteiner.numero }}</option>
+        </select> 
+      </div>
+      <div>
+          <label  class="form-label">Tipo</label> 
+          <select [(ngModel)]="tipo" name="tipo" class="form-select" aria-label="Default select example">
+              
+              <option value="embarque">Embarque</option>
+              <option value="descarga">Descarga</option>
+              <option value="gatein">Gate in</option>
+              <option value="gateout">Gate out</option>
+              <option value="reposicionamento">Reposicionamento</option>
+              <option value="pesagem">Pesagem</option>
+              <option value="scanner">Scanner</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data/Hora Início</label>
+            <input [(ngModel)]="dataini" type="datetime-local" name="dataini" class="form-control" >
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Data/Hora Fim</label>
+          <input [(ngModel)]="datafim" type="datetime-local" required name="datafim" class="form-control" >
+        </div>
+        <div class="modal-footer">
+          <button  type="submit" data-dismiss="modal"  class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+  </div>
+  

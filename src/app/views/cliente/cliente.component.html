@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<html>
+<div class="card" >
+    <form (submit)="filtrarClientes()" id="form" class="cardConteiner">
+        <button type="button" (click)="abrirModalCliente()" class="btn btn-success">Criar</button>
+        <h1>Buscar Cliente</h1> 
+          <div class="row">
+            <div class="col-1">
+              <label class="form-label">Cliente</label>
+              <select [(ngModel)]="nome" name="nome" class="form-select" aria-label="Default select example">
+                <option value="">Selecione um cliente</option>
+                <option *ngFor="let cliente of listaClientes" [value]="cliente.ClienteId">{{ cliente.nome }}</option>
+              </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label">CNPJ</label>
+                  <input [(ngModel)]="cnpj" name="cnpj" type="text" class="form-control"  >
+            </div>
+            <div class="col-1">
+                <label class="form-label">CEP</label>
+                  <input [(ngModel)]="cep" name="cep" type="text" class="form-control"  >
+              </div>
+              <div class="col-1">
+                <label class="form-label">Contato</label>
+                  <input [(ngModel)]="contato" name="contato" type="text" class="form-control"  >
+              </div>
+      </div> <br>
+          <button type="submit" id="buscar" class="btn btn-secondary">Buscar</button>
+    </form>
+   
+    <table id="tabela"class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Cep</th>
+            <th scope="col">Contato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of listaClientes">
+            <td name="editId" >{{cliente.clienteId}}</td>
+            <td>
+              <div *ngIf="cliente.edit"><input type="text" class="form-control" [(ngModel)]="editNome"></div>
+              <div *ngIf="!cliente.edit">{{ cliente.nome }}</div>
+            </td>
+            <td><div *ngIf="cliente.edit"><input type="text" class="form-control" [(ngModel)]="editCnpj"></div>
+              <div *ngIf="!cliente.edit">{{ cliente.cnpj }}</div>
+            </td>
+            <td><div *ngIf="cliente.edit"><input type="text" class="form-control" [(ngModel)]="editCep"></div>
+              <div *ngIf="!cliente.edit">{{ cliente.cep }}</div>
+            </td>
+            <td><div *ngIf="cliente.edit"><input type="text" class="form-control" [(ngModel)]="editContato"></div>
+              <div *ngIf="!cliente.edit">{{ cliente.contato }}</div>
+            </td>
+              <div *ngIf="cliente.edit">
+                <button (click)="editarCliente(cliente)">Salvar</button>
+                <button (click)="desabilitarEdicao(cliente)">Cancelar</button>
+              </div>
+              <td>
+              <div *ngIf="!cliente.edit">
+                <button (click)="deletarCliente(cliente.clienteId)">Excluir</button>
+                <button (click)="habilitarEdicao(cliente)">Editar</button>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+  </div>
+
+</html>

@@ -1,0 +1,130 @@
+
+<html lang="pt-br">
+    <app-navbar></app-navbar>
+<body>
+ 
+    <div class="card" >
+        <form (submit)="filtrarMovimento()" id="form" class="cardConteiner">
+            <button type="button" (click)="abrirModalMovimento()" class="btn btn-success">Criar</button>
+            <h1>Buscar Movimentação </h1> 
+              <div class="row">
+                <div class="col-1">
+                   <label class="form-label">Conteiner</label>
+                  <select [(ngModel)]="conteiner" name="conteiner" class="form-select" aria-label="Default select example">
+                    <option selected value="">Selecione um contêiner</option>
+                    <option *ngFor="let movimento of listaMovimento"[value]="movimento.id">{{ movimento.numero }}</option>
+                  </select> 
+                </div>
+            <div class="col-1">           
+              <label class="form-label">Tipo</label>
+              <select [(ngModel)]="tipo" name="tipo" class="form-select" aria-label="Default select example">
+                <option selected value="">Selecione um tipo</option>
+                <option value="embarque">Embarque</option>
+                <option value="descarga">Descarga</option>
+                <option value="gatein">Gate in</option>
+                <option value="gateout">Gate out</option>
+                <option value="reposicionamento">Reposicionamento</option>
+                <option value="pesagem">Pesagem</option>
+                <option value="scanner">Scanner</option>
+              </select>
+            </div> 
+            <div class="col-1">           
+              <label class="form-label">Data/Hora Início</label>
+              <input [(ngModel)]="dataini" type="datetime-local" name="dataini" class="form-control" >
+            </div> 
+            <div class="col-1">           
+              <label  class="form-label">Data/Hora Fim</label>
+              <input [(ngModel)]="datafim" type="datetime-local" name="datafim" class="form-control" >
+            </div> 
+          </div> <br>
+              <button type="submit" id="buscar" class="btn btn-secondary">Buscar</button>
+        </form>
+       
+        <table id="tabela"class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Conteiner</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Data/Hora Início</th>
+                <th scope="col">Data/Hora Fim</th>
+              </tr>
+            </thead>
+            <tbody>
+                 <tr *ngFor="let movimento of listaMovimento">
+                    <td>{{movimento.id}}</td>
+
+                    <td>
+                      <!-- <div *ngIf="movimento.edit"><select>
+                        <option *ngFor="let movimento of listaMovimento" [value]="movimento.conteiner.id">{{ movimento.numero }}</option>
+                      </select></div> -->
+                      <div *ngIf="movimento.edit">
+                        <select class="form-select" [(ngModel)]="editConteiner">
+                        <option *ngFor="let conteiner of listaConteineres" [value]="conteiner.id">{{ conteiner.numero }}</option>
+                      </select>  
+                      </div>
+
+                      <div *ngIf="!movimento.edit">
+                        {{ movimento.numero }}
+
+                      </div>
+                    </td>
+                    <td>
+                      <div *ngIf="movimento.edit">
+                        <select [(ngModel)]="editTipo" name="editTipo" class="form-select" aria-label="Default select example">
+                        <option selected value="">Selecione um tipo</option>
+                        <option value="embarque">Embarque</option>
+                        <option value="descarga">Descarga</option>
+                        <option value="gatein">Gate in</option>
+                        <option value="gateout">Gate out</option>
+                        <option value="reposicionamento">Reposicionamento</option>
+                        <option value="pesagem">Pesagem</option>
+                        <option value="scanner">Scanner</option>
+                      </select></div>
+                      <div *ngIf="!movimento.edit">{{ movimento.tipo }}</div>
+                    </td>
+                    <td>
+                      <div *ngIf="movimento.edit"><input type="text" class="form-control" [(ngModel)]="editDataini"></div>
+                      <div *ngIf="!movimento.edit">{{ movimento.dataIni | date:'dd/MM/yyyy HH:mm' }} </div>
+                    </td>
+                    <td>
+                      <div *ngIf="movimento.edit"><input type="text" class="form-control" [(ngModel)]="editDatafim"></div>
+                      <div *ngIf="!movimento.edit">{{ movimento.dataFim | date:'dd/MM/yyyy HH:mm' }}</div>
+                    </td>
+
+                    <!-- <td>{{movimento.dataIni.toString('DD/MM/YYYY HH24:MI:SS')}}</td> -->
+                    <td>
+                      <div *ngIf="movimento.edit">
+                      <button (click)="editarMovimento(movimento)">Salvar</button>
+                      <button (click)="desabilitarEdicao(movimento)">Cancelar</button>
+                    </div>
+                    <td>
+                    <div *ngIf="!movimento.edit">
+                      <button (click)="deletarMovimento(movimento.id)">Excluir</button>
+                      <button (click)="habilitarEdicao(movimento)">Editar</button>
+                    </div></td>
+                    </tr> 
+            </tbody>
+          </table>
+          
+      </div>
+
+
+
+
+
+
+
+
+
+
+        
+    
+      
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+</body>
+</html>

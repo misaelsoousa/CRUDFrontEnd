@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Contêiner</h1>
+  <button type="button" (click)="modalRef.close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form (submit)="cadastrarConteiner()" id="teste">
+    <div class="mb-3">
+      <label class="form-label">Cliente</label>
+      <select [(ngModel)]="cliente" name="cliente" class="form-select" aria-label="Default select example">
+        <option value="">Selecione um cliente</option>
+        <option *ngFor="let cliente of listaClientes" [value]="cliente.clienteId">{{ cliente.nome }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Número do Contêiner</label>
+      <input [(ngModel)]="numero" mask='SSSS9999999' required name="numero" class="form-control" >
+    </div>
+    <div>
+      <label  class="form-label">Tipo</label> 
+      <select [(ngModel)]="tipo" name="tipo" class="form-select" aria-label="Default select example">
+          
+          <option value="20" >20</option>
+          <option value="40" >40</option>
+      </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select [(ngModel)]="status" name="status" class="form-select" aria-label="Default select example">
+          
+          <option value="cheio">Cheio</option>
+          <option value="vazio" >Vazio</option>
+      </select>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Categoria</label>
+        <select [(ngModel)]="categoria" name="categoria" class="form-select" aria-label="Default select example">
+          
+          <option value="importação">Importação</option>
+          <option value="exportação" >Exportação</option>
+      </select>
+      </div>
+      <div class="modal-footer">
+        <button  type="submit" data-dismiss="modal"  class="btn btn-primary">Cadastrar</button>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Cliente</h1>
+    <button type="button" (click)="modalRef.close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form (submit)="cadastrarCliente()" id="teste">
+      <div class="mb-3">
+        <label class="form-label">Cliente</label>
+        <input [(ngModel)]="nome" required name="nome" class="form-control"  >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">CNPJ</label>
+        <input [(ngModel)]="cnpj" required name="cnpj" class="form-control" >
+      </div>
+        <div class="mb-3">
+          <label  class="form-label">CEP</label>
+          <input [(ngModel)]="cep" required name="cep" class="form-control" >
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contato</label>
+          <input [(ngModel)]="contato" required name="contato" class="form-control" >
+        </div>
+        <div class="modal-footer">
+        </div>
+        <button type="submit" data-dismiss="modal"  class="btn btn-primary">Cadastrar</button>
+    </form>
+  </div>  
+  

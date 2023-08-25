@@ -1,0 +1,13 @@
+.card{
+    width: 50vw;
+    margin:auto;
+    bottom: -5vw;
+    overflow-x: hidden;
+}
+.cardConteiner{
+    width: 50%;
+    margin: 5%;
+}
+#form{
+    width: 100vw;
+}
